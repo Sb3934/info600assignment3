@@ -1,13 +1,11 @@
-FROM       python:latest
-RUN pip install flask
+FROM openjdk:11
 
 RUN mkdir /app
 
 WORKDIR /app
 
-RUN set -e
+COPY . /app/
 
-RUN export FLASK_ENV=development
-RUN export FLASK_APP=server.py
+RUN javac Main.java
 
-CMD ["python","server.py"]
+CMD ["java", "Main"]
